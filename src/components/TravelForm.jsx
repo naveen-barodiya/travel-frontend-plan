@@ -42,7 +42,7 @@ export default function TravelForm() {
         setResult(null);
 
         try {
-            const response = await fetch("https://travel-backend-1-8efb.onrender.com/api/travel/recommend", {
+            const response = await fetch("http://localhost:5000/api/travel/recommend", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(form),
