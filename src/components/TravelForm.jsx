@@ -102,7 +102,14 @@ export default function TravelForm() {
 
                     "
                     // className="bg-cover bg-center p-6 relative"
-                    style={{ backgroundImage: "url('/img4.jpg') " }}
+                    style={{
+                        backgroundImage: `
+      linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+      url('/img4.jpg')
+    `,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                    }}
                 >
                     <div className=" p-4 rounded-lg">
                         <h1 className="text-3xl font-bold text-white mb-2">Basic Profile</h1>
