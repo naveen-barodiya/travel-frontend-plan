@@ -72,6 +72,7 @@ export default function ResultCard({ data }) {
             {/* FOOTER INFO */}
             <div className="mt-6 flex flex-wrap gap-3 justify-center text-sm">
                 <Badge text={`🕒 Best time: ${data.bestTimeToVisit}`} />
+                <Badge text={`🧑‍🤝‍🧑 Travel Mood: ${data.travelMoodMatch}`}  />
                
             </div>
         </div>

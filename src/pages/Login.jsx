@@ -63,8 +63,14 @@ export default function Login() {
             >
                 {/* Header */}
                 <div className="text-center">
-                    <h2 className="text-3xl font-extrabold bg-gradient-to-r from-blue-600 to-emerald-500 bg-clip-text text-transparent">
-                        🌍 Travel Planner Login
+                    <h2 className="text-3xl font-extrabold">
+                        <span className="mr-2">🌍</span>
+                        <span className="
+                        bg-linear-to-r from-blue-400 to-emerald-500
+                        bg-clip-text text-transparent
+  ">
+                            Travel Planner Login
+                        </span>
                     </h2>
                     <p className="text-sm text-gray-500 mt-2">
                         Start your personalized travel journey
