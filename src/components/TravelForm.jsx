@@ -124,7 +124,7 @@ export default function TravelForm() {
 
                     <div className=" p-4 rounded-lg">
                         <h1 className="text-3xl font-bold text-white mb-2"> Personality & Style</h1>
-                        <CheckboxGroup
+                        <CheckboxGroup className="cursor-pointer"
                             
                             options={[
                                 "Introvert",
@@ -145,6 +145,7 @@ export default function TravelForm() {
                         <h1 className="text-3xl font-bold text-white mb-2">Destination & Travel Style</h1>
                         <CheckboxGroup
                             // title="Destination Type"
+                            className="cursor-pointer"
                             options={[
                                 "Mountains",
                                 "Beach",
@@ -167,6 +168,7 @@ export default function TravelForm() {
 
                         <Grid>
                             <Select
+                                className="cursor-pointer"
                                 label="Travel Pace"
                                 name="travelPace"
                                 options={["Slow & relaxed", "Balanced", "Fast & packed"]}
@@ -180,6 +182,7 @@ export default function TravelForm() {
                             Food & Culture
                         </h1>
                         <CheckboxGroup
+                            className="cursor-pointer"
                             // title="Food Preference"
                             options={[
                                 "Vegetarian",
@@ -201,6 +204,7 @@ export default function TravelForm() {
                     <div className=" p-4 rounded-lg">
                         <h1 className="text-3xl font-bold text-white mb-2">Interests & Activities</h1>
                         <CheckboxGroup
+                            className="cursor-pointer"
                             options={[
                                 "Sightseeing",
                                 "Adventure",
@@ -227,12 +231,14 @@ export default function TravelForm() {
                         <h1 className="text-3xl font-bold text-white mb-2">Time & Planning</h1>
                         <Grid>
                             <Select
+                                className="cursor-pointer"
                                 label="Trip Duration"
                                 name="tripDuration"
                                 options={["1–2 Days", "3–5 Days", "6–10 Days", "More than 10 Days"]}
                                 onChange={handleChange}
                             />
                             <Select
+                                className="cursor-pointer"
                                 label="Daily Travel Time"
                                 name="dailyTravelTime"
                                 options={["4–6 hours", "6–8 hours", "Flexible"]}
@@ -254,6 +260,7 @@ export default function TravelForm() {
                             hover:from-blue-700 hover:to-indigo-700
                             transition
                             disabled:opacity-60
+                            cursor-pointer
                         "
                     >
                         {loading ? "Generating your travel plan..." : " Generate My Travel Plan"}
