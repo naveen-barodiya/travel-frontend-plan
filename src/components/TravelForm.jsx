@@ -68,7 +68,7 @@ export default function TravelForm() {
     };
 
     return (
-        <div id="travel-form" className="min-h-screen w-full bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 px-4 py-10">
+        <div id="travel-form" className="min-h-screen w-full bg-linear-to-br from-slate-50 via-blue-50 to-indigo-100 px-4 py-10">
 
             {/* ================= RESULT ================= */}
             {result && (
@@ -104,11 +104,11 @@ export default function TravelForm() {
                     // className="bg-cover bg-center p-6 relative"
                     style={{
                         backgroundImage: `
-      linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+      linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
       url('/img4.jpg')
     `,
                         backgroundSize: "cover",
-                        backgroundPosition: "center",
+                        backgroundPosition: "czenter",
                     }}
                 >
                     <div className=" p-4 rounded-lg">
