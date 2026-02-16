@@ -42,7 +42,7 @@ export default function TravelForm() {
         setResult(null);
 
         try {
-            const response = await fetch("https://travel-backend-plan.onrender.com/api/travel/recommend", {
+            const response = await fetch("https://travel-backend-plan.vercel.app/api/travel/recommend", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(form),
@@ -246,7 +246,7 @@ export default function TravelForm() {
                             />
                         </Grid>
                     </div>
-
+                    
                     <button
                         disabled={loading}
                         className="
@@ -256,7 +256,7 @@ export default function TravelForm() {
                             text-lg
                             font-semibold
                             text-white
-                            bg-gradient-to-r from-blue-600 to-indigo-600
+                            bg-linear-to-r from-blue-600 to-indigo-600
                             hover:from-blue-700 hover:to-indigo-700
                             transition
                             disabled:opacity-60

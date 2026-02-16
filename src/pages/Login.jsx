@@ -22,8 +22,7 @@ export default function Login() {
         setLoading(true);
 
         try {
-            const response = await fetch(
-                "https://travel-backend-plan.onrender.com/api/auth/login",
+            const response = await fetch("https://travel-backend-plan.vercel.app/api/auth/login",
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
