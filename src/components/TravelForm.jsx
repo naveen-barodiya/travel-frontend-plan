@@ -42,7 +42,7 @@ export default function TravelForm() {
         setResult(null);
 
         try {
-            const response = await fetch("https://travel-backend-plan.vercel.app/api/travel/recommend", {
+            const response = await fetch("https://travel-backend-plan.onrender.com/travel/recommend", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(form),
