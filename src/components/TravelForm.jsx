@@ -114,11 +114,11 @@ export default function TravelForm() {
                     <div className=" p-4 rounded-lg">
                         <h1 className="text-3xl font-bold text-white mb-2">Basic Profile</h1>
                         <Grid>
-                            <Input label="Name / Nickname" name="name" placeholder="Your name" onChange={handleChange} />
+                            <Input label="Name / Nickname" name="name" placeholder="Your name" onChange={handleChange} required={true} />
                             <Select label="Age Group" name="ageGroup" options={["18–25", "26–35", "36–50", "50+"]} onChange={handleChange} />
-                            <Input label="Current Location" name="currentLocation" placeholder="Jaipur, Delhi" onChange={handleChange} />
+                            <Input label="Current Location" name="currentLocation" placeholder="Jaipur, Delhi" onChange={handleChange}  required={true} />
                             <Input label="Preferred Destination" name="preferredDestination" placeholder="Goa, Manali" onChange={handleChange} />
-                            <Select label="Travel Experience" name="travelExperience" options={["First-time", "Occasional", "Frequent", "Digital Nomad"]} onChange={handleChange} />
+                            <Select label="Travel Experience" name="travelExperience" options={["First-time", "Occasional", "Frequent", "Digital Nomad"]} onChange={handleChange}  required={true} />
                         </Grid>
                     </div>
 
@@ -138,6 +138,7 @@ export default function TravelForm() {
                             name="personality"
                             selectedValues={form.personality}
                             onToggle={handleMultiSelect}
+                            required={true}
                         />
                     </div>
 
@@ -164,6 +165,7 @@ export default function TravelForm() {
                             name="destinationTypes"
                             selectedValues={form.destinationTypes}
                             onToggle={handleMultiSelect}
+                            required={true}
                         />
 
                         <Grid>
@@ -173,6 +175,7 @@ export default function TravelForm() {
                                 name="travelPace"
                                 options={["Slow & relaxed", "Balanced", "Fast & packed"]}
                                 onChange={handleChange}
+                                required={true}
                             />
                         </Grid>
                     </div>
@@ -198,6 +201,7 @@ export default function TravelForm() {
                             name="foodPreferences"
                             selectedValues={form.foodPreferences}
                             onToggle={handleMultiSelect}
+                            required={true}
                         />
                     </div>
 
@@ -224,6 +228,7 @@ export default function TravelForm() {
                             name="interests"
                             selectedValues={form.interests}
                             onToggle={handleMultiSelect}
+                            required={true}
                         />
                     </div>
 
@@ -236,6 +241,7 @@ export default function TravelForm() {
                                 name="tripDuration"
                                 options={["1–2 Days", "3–5 Days", "6–10 Days", "More than 10 Days"]}
                                 onChange={handleChange}
+                                required={true}
                             />
                             <Select
                                 className="cursor-pointer"
@@ -243,6 +249,7 @@ export default function TravelForm() {
                                 name="dailyTravelTime"
                                 options={["4–6 hours", "6–8 hours", "Flexible"]}
                                 onChange={handleChange}
+                                required={true}
                             />
                         </Grid>
                     </div>
