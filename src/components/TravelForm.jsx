@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ResultCard from "./ResultCard";
 
 export default function TravelForm() {
+    const [city, setCity] = useState("");
     const [form, setForm] = useState({
         name: "",
         ageGroup: "",
@@ -21,6 +22,7 @@ export default function TravelForm() {
 
     const [result, setResult] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [locationLoading, setLocationLoading] = useState(false);
 
     /* ---------- HANDLERS (UNCHANGED) ---------- */
     const handleChange = (e) => {
@@ -35,6 +37,61 @@ export default function TravelForm() {
                 : [...prev[name], value],
         }));
     };
+
+
+    // geolocation auto-fill
+    const getLiveLocation = () => {
+        if (!navigator.geolocation) {
+            alert("Geolocation is not supported by your browser");
+            return;
+        }
+
+        setLocationLoading(true);
+
+        navigator.geolocation.getCurrentPosition(
+            async (position) => {
+                const { latitude, longitude } = position.coords;
+
+                try {
+                    const res = await fetch(
+                        `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
+                    );
+
+                    const data = await res.json();
+                    console.log(data)
+                    setCity(data.display_name);
+
+                    // const city =
+                    //     data.address.city ||
+                    //     data.address.town ||
+                    //     data.address.village ||
+                    //     data.address.state ||
+                    //     "";
+
+                    // setForm((prev) => ({
+                    //     ...prev,
+                    //     currentLocation: city,
+                    // }));
+                } catch (error) {
+                    alert("Failed to fetch location name");
+                } finally {
+                    setLocationLoading(false);
+                }
+            },
+            () => {
+                alert("Location permission denied");
+                setLocationLoading(false);
+            }
+        );
+    };
+
+    const setLiveLocation = (city) => {
+        setForm((prev) => ({
+            ...prev,
+            currentLocation: city,
+        }));
+    }
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -66,6 +123,13 @@ export default function TravelForm() {
             setLoading(false);
         }
     };
+
+    useEffect(() => {
+        getLiveLocation();
+    }, []);
+
+
+
 
     return (
         <div id="travel-form" className="min-h-screen w-full bg-linear-to-br from-slate-50 via-blue-50 to-indigo-100 px-4 py-10">
@@ -114,18 +178,43 @@ export default function TravelForm() {
                     <div className=" p-4 rounded-lg">
                         <h1 className="text-3xl font-bold text-white mb-2">Basic Profile</h1>
                         <Grid>
-                            <Input label="Name / Nickname" name="name" placeholder="Your name" onChange={handleChange} required={true} />
+                            <Input label="Name / Nickname" name="name" placeholder="Your name" onChange={handleChange} required={true} value={form.name} />
+
                             <Select label="Age Group" name="ageGroup" options={["18–25", "26–35", "36–50", "50+"]} onChange={handleChange} />
-                            <Input label="Current Location" name="currentLocation" placeholder="Jaipur, Delhi" onChange={handleChange}  required={true} />
-                            <Input label="Preferred Destination" name="preferredDestination" placeholder="Goa, Manali" onChange={handleChange} />
-                            <Select label="Travel Experience" name="travelExperience" options={["First-time", "Occasional", "Frequent", "Digital Nomad"]} onChange={handleChange}  required={true} />
+                            <Input
+                                label="Current Location"
+                                name="currentLocation"
+                                placeholder="Your Current Location"
+                                value={form.currentLocation}
+                                onChange={handleChange}
+                                required={true}
+                            />
+                            <input
+                                type="button"
+                                value="use current location"
+                                onClick={() => setLiveLocation(city)}
+                                className="     bg-blue-500 
+        hover:bg-blue-600 
+        text-white 
+        text-lg
+        h-14
+        w-50
+        rounded-md 
+        items-center 
+        justify-center 
+        transition
+        mt-6"
+                            />
+                            <Input label="Preferred Destination" name="preferredDestination" placeholder="Your Preferred Location" onChange={handleChange} value={form.preferredDestination} />
+
+                            <Select label="Travel Experience" name="travelExperience" options={["First-time", "Occasional", "Frequent", "Digital Nomad"]} onChange={handleChange} required={true} />
                         </Grid>
                     </div>
 
                     <div className=" p-4 rounded-lg">
                         <h1 className="text-3xl font-bold text-white mb-2"> Personality & Style</h1>
                         <CheckboxGroup className="cursor-pointer"
-                            
+
                             options={[
                                 "Introvert",
                                 "Extrovert",
@@ -253,7 +342,7 @@ export default function TravelForm() {
                             />
                         </Grid>
                     </div>
-                    
+
                     <button
                         disabled={loading}
                         className="
@@ -298,7 +387,7 @@ function Grid({ children }) {
     return <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">{children}</div>;
 }
 
-function Input({ label, name, placeholder, onChange }) {
+function Input({ label, name, placeholder, onChange, value }) {
     return (
         <div>
             <label className="text-sm font-medium text-white">{label}</label>
@@ -306,6 +395,7 @@ function Input({ label, name, placeholder, onChange }) {
                 name={name}
                 placeholder={placeholder}
                 onChange={onChange}
+                value={value || ""}
                 className="
                     mt-1
                     w-full

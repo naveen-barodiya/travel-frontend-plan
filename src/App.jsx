@@ -6,9 +6,9 @@ import Home from "./pages/Home";
 import { useEffect } from "react";
 
 export default function App() {
-  useEffect(() => {
-    fetch("https://travel-backend-plan.onrender.com/");
-  }, []);
+  // useEffect(() => {
+  //   fetch("https://travel-backend-plan.onrender.com/");
+  // }, []);
   return (
     <BrowserRouter>
       <Routes>
